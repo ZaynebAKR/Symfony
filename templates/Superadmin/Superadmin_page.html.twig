@@ -1,0 +1,171 @@
+{% extends 'baseSuperAdmin.html.twig' %}
+
+{% block title %}Page{% endblock %}
+
+{% block body %}
+<head>
+    <!-- Autres balises de tête -->
+
+    <!-- Ajouter les liens vers Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+  <header>
+      <div class="sidebar" data-color="orange" style="width: 200px;">
+        <div class="logo d-flex flex-row align-items-center">
+          <img src="assets_admin/img/logo-removebg-preview.png" alt="" width="70" height="70">
+            <a style="color: white;"> CityVibe </a>
+         </div>
+      <div >
+        <ul class="nav">
+  <div class="logo d-flex flex-row align-items-center">
+        <li>
+            <img src="{{asset ('assets_admin/img/page-daccueil.png')}}" alt="" width="20" height="20">
+            <a href="{{ path ('app_Super_admin') }}"> Accueil</a>
+        </li>
+    </div>
+    <div class="logo d-flex flex-row align-items-center">
+        <li>
+            <img src="{{asset ('assets_admin/img/page-de-texte.png')}}" alt="" width="20" height="20">
+            <a href="#" onclick="toggleSubMenu('lieuSubMenu')"> Lieu <span class="sub-menu-indicator">▼</span></a>
+            <ul id="lieuSubMenu" class="sub-menu" style="display: none;"> <!-- Nested unordered list for sub-items with initial display set to none -->
+                <li><a href="{{ path ('app_Super_admin_page') }}" class="active">► Page</a></li>
+                <li><a href="{{ path ('app_Super_admin_publication') }}">► Publication</a></li>
+            </ul>
+        </li>
+    </div>
+</ul>
+
+<script>
+    function toggleSubMenu(subMenuId) {
+        var subMenu = document.getElementById(subMenuId);
+        subMenu.style.display = subMenu.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+<style>
+    .sub-menu-indicator {
+        margin-left: 5px; /* Adjust margin as needed */
+        font-size: 10px; /* Adjust font size as needed */
+    }
+    .sub-menu li {
+        list-style: none; /* Remove bullet points */
+    }
+</style>
+
+
+
+    </div>
+  </div>
+  </header>
+
+<div class="main-panel d-flex justify-content-center" id="main-panel" style="width: 1139px;">
+    <main class="main">
+        <section id="testimonials" class="testimonials section">
+            <div class="container section-title" data-aos="fade-up" style="text-align: left;">
+                <p style="font-weight: bold; font-size: 20px; margin-bottom: 20px;">
+                    <span style="border-bottom: 3px solid orange; padding-bottom: 5px;"> &nbsp; &nbsp;Bienvenue a nos pages &nbsp; &nbsp;   </span>
+                </p>
+            </div>
+            <div>
+</div>
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        {% for Superadmin in pages %}
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="card">
+                                    <img src="{{ Superadmin.image }}" class="card-img-top" alt="{{ Superadmin.nom }}" style=" width:1000px ; height:300px ;">
+                                    <div class="card-body text-center"> 
+                                        <img src="{{ Superadmin.logo }}" class="card-logo" alt="Logo {{ Superadmin.nom }}" style=" width:150px ; height:150px ; margin-top: -110px;">
+                                        </br>
+                                        <h3 class="card-title"><b>{{ Superadmin.nom }}</b></h3>
+                                        <p class="card-text"><strong>Contact:</strong> {{ Superadmin.contact }}</p>
+                                        <p class="card-text"><strong>Categorie:</strong> {{ Superadmin.categoriep }}</p>
+                                        <p class="card-text"><strong>Localisation:</strong> {{ Superadmin.localisation }}</p>
+                                        <p class="card-text"><strong>Description:</strong> {{ Superadmin.description }}</p>
+                                        <p class="card-text"><strong>Ouverture:</strong> {{ Superadmin.ouverture ? Superadmin.ouverture|date('H:i:s') : '' }}</p>
+                                    <div class="d-flex justify-content-between align-items-center"></br></br></br>
+                                    <a href="{{path ('app_Super_admin_edit_page', {'idp': Superadmin.idp}) }}" class="btn btn-secondary" style="background-color: #f96332;; color: white; border-color: #f96332;; margin-right: 50px; margin-left: -10px; border-radius: 30px;">Modifier</a>
+                                    <form action="{{ path('app_Super_admin_delete_page', {'idp': Superadmin.idp}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')" class="d-inline">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ Superadmin.idp) }}">
+                                        <button type="submit" class="btn btn-secondary" style="background-color: #f96332;; color: white; border-color: #f96332;; margin-right: 90px; margin-left: -40px; border-radius: 30px;">Supprimer</button>
+                                    </form>
+                                    <a href="{{ path('app_Super_admin_show_page', {'idp': Superadmin.idp}) }}" class="btn btn-primary" style="background-color: #f96332;; color: white; border-color: #f96332;; border-radius: 30px; height:40px ; width:100px ; margin-right: -10px; margin-left: -60px;"> Plus</a>
+                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    <h3>No Testimonials Available</h3>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+    </main> 
+</div>
+
+<footer id="footer" class="footer position-relative">
+    <div class="container copyright text-center mt-4">
+        <p>© <span>Copyright</span> <strong class="px-1">CityVibe</strong> <span>Tous droits réservés</span></p>
+    </div>
+</footer>
+
+<!-- Core JS Files -->
+<script src="../assets/js/core/jquery.min.js"></script>
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!-- Google Maps Plugin -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chart JS -->
+<script src="../assets/js/plugins/chartjs.min.js"></script>
+<!-- Notifications Plugin -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!-- Custom Script for Swiper initialization -->
+<script>
+    var swiper = new Swiper('.swiper', {
+        loop: true,
+        speed: 600,
+        autoplay: {
+            delay: 5000
+        },
+        slidesPerView: 'auto',
+        direction: 'horizontal',
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 40
+            },
+            1200: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            }
+        }
+    });
+</script>
+
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+<script src="../assets/demo/demo.js"></script>
+
+{% endblock %}

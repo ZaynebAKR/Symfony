@@ -1,0 +1,113 @@
+{% extends 'baseSuperAdmin.html.twig' %}
+
+{% block title %}Accueil!{% endblock %}
+
+{% block body %}
+
+<body class="">
+  <div class="wrapper ">
+<div class="sidebar" data-color="orange" style="width: 200px;">
+      <div class="logo d-flex flex-row align-items-center">
+        <img src="{{asset ('assets_admin/img/logo-removebg-preview.png')}}" alt="" width="70" height="70">
+        <a style="color: white;"> CityVibe </a>
+      </div>
+      <div >
+<ul class="nav">
+  <div class="logo d-flex flex-row align-items-center">
+        <li>
+            <img src="{{asset ('assets_admin/img/page-daccueil.png')}}" alt="" width="20" height="20">
+            <a href="{{ path ('app_Super_admin') }}" class="active"> Accueil</a>
+        </li>
+    </div>
+    <div class="logo d-flex flex-row align-items-center">
+        <li>
+            <img src="{{asset ('assets_admin/img/page-de-texte.png')}}" alt="" width="20" height="20">
+            <a href="#" onclick="toggleSubMenu('lieuSubMenu')"> Lieu <span class="sub-menu-indicator">▼</span></a>
+            <ul id="lieuSubMenu" class="sub-menu" style="display: none;"> <!-- Nested unordered list for sub-items with initial display set to none -->
+                <li><a href="{{ path ('app_Super_admin_page') }}">► Page</a></li>
+                <li><a href="{{ path ('app_Super_admin_publication') }}">► Publication</a></li>
+            </ul>
+        </li>
+    </div>
+</ul>
+
+<script>
+    function toggleSubMenu(subMenuId) {
+        var subMenu = document.getElementById(subMenuId);
+        subMenu.style.display = subMenu.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+<style>
+    .sub-menu-indicator {
+        margin-left: 5px; /* Adjust margin as needed */
+        font-size: 10px; /* Adjust font size as needed */
+    }
+    .sub-menu li {
+        list-style: none; /* Remove bullet points */
+    }
+</style>
+
+
+
+    </div>
+  </div>
+  
+      <div class="main-panel" id="main-panel" style="width: 1139px;">
+      </br>
+        <div class="container">
+          <form>
+        <div class="input-group no-border" >
+          <input type="text" value="" class="form-control" placeholder="Search..." >
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <i class="now-ui-icons ui-1_zoom-bold"></i>
+          </div>
+        </div>
+      </div>
+          </form>
+  </div>
+<section id="hero" class="hero section text-center"> <!-- Ajout de la classe text-center pour centrer le contenu -->
+
+<img src="{{asset ('assets_admin/img/city.jpg')}}" alt=""  style="width: 1100px; height: 400px;">
+</br> </br> </br>
+</section>
+
+<section id="about" class="about section">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
+        <img src="{{asset ('assets/img/7.jpg')}}" class="img-fluid" alt="" style="width: 800px; height: 500px;">
+      </div>
+      <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
+        <h4 class="short-description fst-italic">
+        Bienvenue sur notre site dédié à tous ceux en quête de bons plans pour s'amuser, que ce soit en solitaire ou en groupe ! Vous êtes à la bonne adresse pour découvrir une multitude d'activités palpitantes qui sauront égayer votre quotidien. 
+        </h4>
+        <h4 class="short-description">
+        Que vous soyez en quête d'aventures en solo ou que vous souhaitiez partager des moments inoubliables avec vos proches, notre plateforme regorge de suggestions adaptées à tous les goûts et à toutes les envies.
+        </h4>
+        <h4 class="full-description" style="display: none;">
+        Explorez notre sélection variée d'expériences divertissantes, des sorties culturelles aux aventures en plein air en passant par les événements festifs. 
+        <br>
+        Nous sommes là pour vous guider dans la recherche du parfait plan, quel que soit votre humeur du moment. Alors, prêt à vivre des instants de plaisir et de découverte ? Laissez-vous inspirer et lancez-vous dans l'aventure dès maintenant !
+        </h4>
+        <a href="#" class="read-more" onclick="toggleDescription(); return false;"><span>Lire Plus</span><i class="bi bi-arrow-right"></i></a>
+      </div>
+  <script>
+    function toggleDescription() {
+        const shortDescriptions = document.querySelectorAll('.short-description');
+        const fullDescriptions = document.querySelectorAll('.full-description');
+        shortDescriptions.forEach(element => {
+            element.style.display = (element.style.display === 'none') ? 'block' : 'none';
+        });
+        fullDescriptions.forEach(element => {
+            element.style.display = (element.style.display === 'none') ? 'block' : 'none';
+        });
+    }
+  </script>
+    </div>
+  </div>
+</section><!-- /About Section -->
+   </br>
+</body>  
+{% endblock %}

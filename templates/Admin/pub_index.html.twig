@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Publication {% endblock %}
+
+{% block body %}
+
+    {# Navbar #}
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+            <a href="{{ path('app_publication_index') }}" class="logo d-flex align-items-center me-auto">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <img src="{{ asset('assets/img/4.png') }}" alt="" width="70" height="300">
+                <h1 class="">CityVibe</h1>
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="{{ path('app_admin') }}">Accueil</a></li>
+                    <li class="dropdown has-dropdown">
+                        <a href="#" class="active"><span>Lieu</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="{{ path('app_page_admin_show_id') }}">Pages</a></li>
+                            <li><a href="{{ path('app_publication_index') }}">Publications</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+            <a class="btn-getstarted" href="{{ path('app_admin')}}" style="background-color: green;">Mode Economique</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-4 mb-4">
+{% for publication in publications %}
+    {% set pageId = publication.pageRelation.idp %}
+    <a href="{{path ('app_publication_new', {'idpp': pageId}) }}" class="btn btn-orange" style="background-color: #F99D45; color:white; border-radius: 30px;"> + Ajouter</a>
+{% endfor %}
+                </div>
+                <div class="col-md-8 mb-4">
+                    <form action="{{ path('app_publication_index') }}" method="GET" class="search-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Rechercher..." style="border-radius: 30px;">
+                            <button type="submit" class="btn btn-orange" style="background-color: #F99D45; color: white; border-radius: 30px; margin-left: -2px;">Rechercher</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for publication in publications %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card" style="border-radius: 30px;">
+                            <div class="card-body">
+                              
+                                <p class="card-text"><b>Nom : </b>{{ publication.nomp }}</p>
+                                <p class="card-text" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><b>Description:</b> {{ publication.description }}</p>
+                                <img src="{{ asset(publication.image) }}" alt="Publication Image" class="card-img-top" width="" height="200" style="border-radius: 27px;"></br>
+                                <div class="d-flex justify-content-between align-items-center"></br></br></br>
+                                    <a href="{{ path('app_publication_edit', {'id_p': publication.id_p}) }}" class="btn btn-secondary" style="background-color: #F99D45; color: white; border-color: #F99D45; margin-right: 50px; margin-left: -10px; border-radius: 30px;">Modifier</a>
+                                    {# Delete form #}
+                                    <form action="{{ path('app_publication_delete', {'id_p': publication.id_p}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')" class="d-inline">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ publication.id_p) }}">
+                                        <button type="submit" class="btn btn-secondary" style="background-color: #F99D45; color: white; border-color: #F99D45; margin-right: 90px; margin-left: -40px; border-radius: 30px;">Supprimer</button>
+                                    </form>
+                                    <a href="{{ path('app_publication_show', {'id_p': publication.id_p}) }}" class="btn btn-primary" style="background-color: #F99D45; color: white; border-color: #F99D45; border-radius: 30px; height:40px ; width:100px ; margin-right: -10px; margin-left: -60px;">Voir Plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>page n'existe pas .</p>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    {# Footer #}
+    <footer id="footer" class="footer position-relative">
+        <div class="container copyright text-center mt-4">
+            <p>© <span>Copyright</span> <strong class="px-1">CityVibe</strong> <span>Tous droits réservés</span></p>
+        </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="{{ asset ('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/php-email-form/validate.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/aos/aos.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+
+    <!-- Main JS File -->
+    <script src="{{ asset ('assets/js/main.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{{ form_start(form, {'attr': {'novalidate':'novalidate', 'autocomplete': 'off'}}) }}<div class="form-group-left" style="margin-bottom: 10px;">
+    <div class="flex-container-left">
+      {{ form_errors(form.nom) }}
+        <label class="icon-label-left"><img src="{{asset ('assets/img/carte-de-visite.png') }}" style="width: 30px; height: 30px;"></label> Nom
+{{ form_widget(form.nom, {'attr': {'class': 'form-control-left'}}) }}    
+</div>
+</div>
+
+<div class="form-group-left" style="margin-bottom: 10px;">
+    <div class="flex-container-left">
+          {{ form_errors(form.contact) }}
+        <label class="icon-label-left"><img src="{{asset ('assets/img/casque.png') }}" style="width: 30px; height: 30px;"></label> Contact
+        {{ form_widget(form.contact, {'attr': {'class': 'form-control-left'}}) }}
+    </div>
+</div>
+
+<div class="form-group-left" style="margin-bottom: 10px;">
+    <div class="flex-container-left">
+              {{ form_errors(form.categoriep) }}
+        <label class="icon-label-left"><img src="{{asset ('assets/img/categorie.png') }}" style="width: 30px; height: 30px;"></label> Catégorie
+        {{ form_widget(form.categoriep, {'attr': {'class': 'form-control-left'}}) }}
+    </div>
+</div>
+
+<div class="form-group-left" style="margin-bottom: 10px;">
+    <div class="flex-container-left">
+                  {{ form_errors(form.localisation) }}
+        <label class="icon-label-left"><img src="{{asset ('assets/img/localisation-du-terrain.png') }}" style="width: 30px; height: 30px;"></label> Localisation
+        {{ form_widget(form.localisation, {'attr': {'class': 'form-control-left'}}) }}
+    </div>
+</div>
+
+<div class="form-group-left" style="margin-bottom: 10px;">
+    <div class="flex-container-left">
+                      {{ form_errors(form.description) }}
+        <label class="icon-label-left"><img src="{{asset ('assets/img/description.png') }}" style="width: 30px; height: 30px;"></label> Description
+        {{ form_widget(form.description, {'attr': {'class': 'form-control-left'}}) }}
+    </div>
+</div>
+
+<div class="form-group-left" style="margin-bottom: 10px;">
+    <div class="flex-container-left">
+        {{ form_errors(form.ouverture) }}
+        <label class="icon-label-left"><img src="{{ asset('assets/img/avance-dans-le-temps.png') }}" style="width: 30px; height: 30px;"></label> Ouverture
+        <div style="margin-top: -29px; margin-left: 120px;">
+            {{ form_widget(form.ouverture, {'attr': {'class': 'form-control-left'}}) }}
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group-left" style="margin-bottom: 10px;">
+    <div class="flex-container-left">
+        <label class="icon-label-left"><img src="{{asset ('assets/img/ajouter-une-image.png') }}" style="width: 30px; height: 30px;"></label> Image
+        {{ form_widget(form.image, {'attr': {'class': 'form-control-left'}}) }}
+    </div>
+</div>
+
+<div class="form-group-left" style="margin-bottom: 10px;">
+    <div class="flex-container-left">
+        <label class="icon-label-left"><img src="{{asset ('assets/img/developper.png') }}" style="width: 30px; height: 30px;"></label> Logo
+        {{ form_widget(form.logo, {'attr': {'class': 'form-control-left'}}) }}
+    </div>
+</div>
+
+<div class="form-group-left" style="margin-bottom: 10px;">
+    <div class="flex-container-left">
+        <button type="submit" class="btn">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}

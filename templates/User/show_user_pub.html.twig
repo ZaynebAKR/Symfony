@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{{path ('app_publication_show', {'id_p': publication.id_p}) }}" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="{{asset ('assets/img/4.png')}}" alt="" width="70" height="300">
+        <h1 class="">CityVibe</h1>
+      </a>
+
+           <nav id="navmenu" class="navmenu">
+    <ul>
+        <li><a href="{{ path('app_index') }}" class="active">Accueil</a></li>
+        <li class="dropdown has-dropdown">
+            <a href="#"><span>Lieu</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+                <li><a href="{{ path('app_page_index_user') }}">Pages</a></li>
+                <li><a href="{{ path('app_publication_index_user') }}">Publications</a></li>
+            </ul>
+        </li>
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
+            <a class="btn-getstarted" href="{{ path('app_index') }}" style="background-color: green;">Mode Economique</a>
+       
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <table class="table mt-4">
+                <tbody>
+                  <tr>
+                    <th><b>Nom</b></th>
+                    <td>{{ publication.nomp }}</td>
+                  </tr>
+                    <tr>
+                    <th><b>Image</b></th>
+                    <td><img src="{{asset ( publication.image) }}" class="img-fluid " alt=""  width="200" height="100"></td>
+                  </tr>
+                  <tr>
+                    <th><b>Description</b></th>
+                    <td>{{ publication.description }}</td>
+                  </tr>
+                
+                 
+                </tbody>
+              </table>
+                    <!-- Bouton de retour -->
+        <div class="text-center mt-4">
+            <a href="{{ path('app_publication_index_user') }}" ><h1  style="color: #F99D26;"> ⟽ </h1></a>
+        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer" class="footer position-relative">
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1">CityVibe</strong> <span>Tous droits réservés</span></p>
+    </div>
+  </footer>
+
+ <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
+  <!-- Preloader -->
+  <div id="preloader"></div>    <!-- Vendor JS Files -->
+    <script src="{{ asset ('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/php-email-form/validate.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/aos/aos.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+    <script src="{{ asset ('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+
+    <!-- Main JS File -->
+    <script src="{{ asset ('assets/js/main.js')}}"></script>
+{% endblock %}

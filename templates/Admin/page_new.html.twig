@@ -1,0 +1,86 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}New Page{% endblock %}
+
+{% block body %}
+    <!-- Header Section -->
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+{% if page.userRelation is not null %}
+    <a href="{{ path('app_page_admin_new', {'idu': page.userRelation.idu}) }}" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="{{ asset ('assets/img/4.png') }}" alt="" width="70" height="300">
+        <h1 class="">CityVibe</h1>
+    </a>
+{% endif %}
+
+<nav id="navmenu" class="navmenu">
+    <ul>
+        <li><a href="{{ path('app_admin') }}">Accueil</a></li>
+        <li class="dropdown has-dropdown">
+            <a href="#" class="active"><span>Lieu</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+{% if page.userRelation is not null %}
+    <li><a href="{{ path('app_page_admin_new', {'idu': page.userRelation.idu}) }}">Pages</a></li>
+{% else %}
+    <!-- Handle the case when page.userRelation is null -->
+    <!-- You can provide a default value or display a message -->
+    <li>User relation not available</li>
+{% endif %}
+                <li><a href="{{ path('app_publication_index') }}">Publications</a></li>
+            </ul>
+        </li>
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
+<a class="btn-getstarted" href="{{path ('app_admin')}}" style="background-color: green;">Mode Economique</a>
+
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <!-- Contact Section -->
+  <section id="contact" class="contact section">
+        <!-- Google Maps from contact.html.twig -->
+        <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
+            <iframe style="border:0; width: 100%; height: 300px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d811636.0472247993!2d8.11667722371394!3d34.05562201590813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b22b8af7d63303%3A0x1a9bb9b26ea18e33!2sTunisia!5e0!3m2!1sen!2sus!4v1677002437589!5m2!1sen!2sus" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <!-- End Google Maps -->
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="text-center">Créer une Page</h1>
+                    {{ include('Admin/page_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-6 text-center">
+                <a href="{{ path('app_page_index') }}" class="btn" style="background-color: #F99D45; color: white; border-radius: 30px; font-size: 18px;">Retour au liste </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <footer id="footer" class="footer position-relative">
+        <div class="container copyright text-center mt-4">
+            <p>© <span>Copyright</span> <strong class="px-1">CityVibe</strong> <span>Tous droits réservés</span></p>
+        </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>    <!-- Vendor JS Files -->
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+    <!-- Main JS File -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
+{% endblock %}

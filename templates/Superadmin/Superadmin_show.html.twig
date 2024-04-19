@@ -1,0 +1,112 @@
+{% extends 'baseSuperAdmin.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+<body class="">
+<div class="sidebar" data-color="orange" style="width: 200px;">
+      
+      <div class="logo d-flex flex-row align-items-center">
+        <img src="{{asset ('assets_admin/img/logo-removebg-preview.png')}}" alt="" width="70" height="70">
+        <a style="color: white;"> CityVibe </a>
+      </div>
+      <div >
+        <ul class="nav">
+  <div class="logo d-flex flex-row align-items-center">
+        <li>
+            <img src="{{asset ('assets_admin/img/page-daccueil.png')}}" alt="" width="20" height="20">
+            <a href="{{ path ('app_Super_admin') }}"> Accueil</a>
+        </li>
+    </div>
+    <div class="logo d-flex flex-row align-items-center">
+        <li>
+            <img src="{{asset ('assets_admin/img/page-de-texte.png')}}" alt="" width="20" height="20">
+            <a href="#" onclick="toggleSubMenu('lieuSubMenu')"> Lieu <span class="sub-menu-indicator">▼</span></a>
+            <ul id="lieuSubMenu" class="sub-menu" style="display: none;"> <!-- Nested unordered list for sub-items with initial display set to none -->
+                <li><a href="{{ path ('app_Super_admin_page') }}">► Page</a></li>
+                <li><a href="{{ path ('app_Super_admin_publication') }}" class="active">► Publication</a></li>
+            </ul>
+        </li>
+    </div>
+</ul>
+
+<script>
+    function toggleSubMenu(subMenuId) {
+        var subMenu = document.getElementById(subMenuId);
+        subMenu.style.display = subMenu.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+<style>
+    .sub-menu-indicator {
+        margin-left: 5px; /* Adjust margin as needed */
+        font-size: 10px; /* Adjust font size as needed */
+    }
+    .sub-menu li {
+        list-style: none; /* Remove bullet points */
+    }
+</style>
+
+
+
+    </div>
+  </div>
+  </br> 
+  </br> 
+  </br> 
+    <div class="main-panel" id="main-panel" style="margin-left: 200px;">
+        <main class="main">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table mt-4">
+                                    <tbody>
+                                        <tr>
+                                            <th><b>Nom</b></th>
+                                            <td>{{ publication.nomp }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>Image</b></th>
+                                            <td><img src="{{asset ( publication.image) }}" class="img-fluid " alt=""  width="200" height="100"></td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>Description</b></th>
+                                            <td>{{ publication.description }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-center">
+                                    <a href="{{ path('app_Super_admin_publication') }}" class="btn btn-primary mt-3" style="border-radius: 30px; background-color: #f96332; color: white; border-color: #f96332;">Retour aux publications</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer id="footer" class="footer position-relative">
+            <div class="container copyright text-center mt-4">
+                <p>© <span>Copyright</span> <strong class="px-1">CityVibe</strong> <span>Tous droits réservés</span></p>
+            </div>
+        </footer>
+
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Preloader -->
+        <div id="preloader"></div>    <!-- Vendor JS Files -->
+        <script src="{{ asset ('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/php-email-form/validate.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/aos/aos.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+
+        <!-- Main JS File -->
+        <script src="{{ asset ('assets/js/main.js')}}"></script>
+    </div>
+</body>
+{% endblock %}
