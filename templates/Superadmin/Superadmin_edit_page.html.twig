@@ -1,17 +1,17 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'baseSuperAdmin.html.twig' %}
 
-{% block title %}Edit Page{% endblock %}
+{% block title %}Page{% endblock %}
 
 {% block body %}
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
-      <a href="{{ path('app_Super_admin_edit_page', {'idp': page.idp}) }}" class="logo d-flex align-items-center me-auto">
-        <img src="{{ asset('assets/img/4.png') }}" alt="" width="70" height="300">
-        <h1 class="">CityVibe</h1>
-      </a>
-      <nav id="navmenu" class="navmenu">
-             <ul class="nav">
+<body class="">
+<div class="sidebar" data-color="orange" style="width: 200px;">
+      
+      <div class="logo d-flex flex-row align-items-center">
+        <img src="{{asset ('assets_admin/img/logo-removebg-preview.png')}}" alt="" width="70" height="70">
+        <a style="color: white;"> CityVibe </a>
+      </div>
+      <div >
+        <ul class="nav">
   <div class="logo d-flex flex-row align-items-center">
         <li>
             <img src="{{asset ('assets_admin/img/page-daccueil.png')}}" alt="" width="20" height="20">
@@ -29,43 +29,70 @@
         </li>
     </div>
 </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
 
-      <a class="btn-getstarted" href="{{path ('app_admin')}}" style="background-color: green;">Mode Economique</a>
+<script>
+    function toggleSubMenu(subMenuId) {
+        var subMenu = document.getElementById(subMenuId);
+        subMenu.style.display = subMenu.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+<style>
+    .sub-menu-indicator {
+        margin-left: 5px; /* Adjust margin as needed */
+        font-size: 10px; /* Adjust font size as needed */
+    }
+    .sub-menu li {
+        list-style: none; /* Remove bullet points */
+    }
+</style>
+
+
 
     </div>
-  </header>
+  </div>
+  </br>
+    <main class="main">
+    
+  <section id="contact" class="contact section">
+           
+   <div class="container">
+    <div class="row justify-content-center">
+<div class="col-md-6">
+    <h1 class="text-center">Modifier Publication</h1>
+    <div class="info-item d-flex justify-content-center" >
+  {{ include('Superadmin/Superadmin_page_form.html.twig', {'button_label': 'Modifier'}) }}     </div>
 
-  <main class="main">
-    <div class="container">
-      <div class="row justify-content-center">
+    <style>
+        .btn-orange {
+            border-radius: 30px;
+            background-color: #f96332;
+            color: white;
+            border-color: #f96332;
+        }
+    </style>
+</div>
+
+    </div>
+     <div class="container">
+    <div class="row justify-content-center">
         <div class="col-md-6">
-          <h1 class="text-center">Edit Page</h1>
-          <div class="info-item d-flex justify-content-center">
-          
-        {{ include('Superadmin/Superadmin_page_form.html.twig', {'button_label': 'Modifier'}) }}
-          </div>
+            <div class="info-item d-flex justify-content-center">
+        <a href="{{ path ('app_Super_admin_page') }}" style="color: #f96332;">Retour au list</a> 
+ </div>
         </div>
-      </div>
-      <div class="row justify-content-center mt-3">
-        <div class="col-md-6 text-center">
-          <a href="{{path ('app_page_admin_show', {'idp': page.idp}) }}" class="btn" style="background-color: #F99D45; color: white; border-radius: 30px; font-size: 18px;">Retour à la page</a>
-          {{ include('Superadmin/page_delete_form.html.twig', {'button_label': 'Supprimer'}) }}
-        </div>
-      </div>
     </div>
-  </main>
-
-  <footer id="footer" class="footer position-relative">
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1">CityVibe</strong> <span>All Rights Reserved</span></p>
       
-    </div>
-  </footer>
-   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  
+    </main>
+
+ <footer id="footer" class="footer position-relative">
+            <div class="container copyright text-center mt-4">
+                <p>© <span>Copyright</span> <strong class="px-1">CityVibe</strong> <span>Tous droits réservés</span></p>
+            </div>
+        </footer>
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
   <!-- Preloader -->
   <div id="preloader"></div>    <!-- Vendor JS Files -->
     <script src="{{ asset ('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

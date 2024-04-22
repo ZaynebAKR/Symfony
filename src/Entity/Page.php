@@ -15,8 +15,8 @@ class Page
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: 'idp', type: 'integer')]
-    private ?int $idp = null;
+    #[ORM\Column(name: 'idP', type: 'integer')]
+    private ?int $idP = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "Veuillez entrer le nom")]
@@ -67,9 +67,9 @@ class Page
         $this->publications = new ArrayCollection();
     }
 
-    public function getIdp(): ?int
+    public function getIdP(): ?int
     {
-        return $this->idp;
+        return $this->idP;
     }
 
     public function getNom(): ?string

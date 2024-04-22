@@ -7,14 +7,14 @@ use App\Repository\PublicationRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 #[ORM\Table(name: "publication")]
-#[ORM\Index(name: "fk_pub_page_idpp", columns: ["idp"])]
+#[ORM\Index(name: "fk_pub_page_idPP", columns: ["idP"])]
 #[ORM\Entity(repositoryClass: PublicationRepository::class)]
 class Publication
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "id_p", type: "integer")]
-    private ?int $id_p = null;
+    #[ORM\Column(name: "id_P", type: "integer")]
+    private ?int $id_P = null;
     
 
     #[ORM\Column(length: 65535)]
@@ -27,18 +27,18 @@ class Publication
     private ?string $image = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Veuillez entrer le nom")]
-    #[Assert\Length(min: 1, minMessage: "Veuillez entrer le nom")]
+    #[Assert\NotBlank(message: "Veuillez entrer le nom du publication")]
+    #[Assert\Length(min: 1, minMessage: "Veuillez entrer le nom du publication")]
     private ?string $nomp = null;
 
     #[ORM\ManyToOne(targetEntity: Page::class, inversedBy: 'publications')]
-    #[ORM\JoinColumn(name: 'idp', referencedColumnName: 'idp', nullable: false)]
+    #[ORM\JoinColumn(name: 'idPP', referencedColumnName: 'idP', nullable: false)]
     private ?Page $pageRelation = null;
     
 
-    public function getId_p(): ?int
+    public function getId_P(): ?int
     {
-        return $this->id_p;
+        return $this->id_P;
     }
 
     public function getDescription(): ?string

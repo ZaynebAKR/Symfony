@@ -9,8 +9,8 @@
    <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
  {% for publications in publication %}
-                        {% set pageId = publication.pageRelation.idp %}
-                        <a href="{{ path('app_publication_new', {'idpp': pageId}) }}" class="btn btn-orange" style="background-color: #F99D45; color:white; border-radius: 30px;"> + Ajouter</a>
+                        {% set pageId = publication.pageRelation.idP %}
+                        <a href="{{ path('app_publication_new', {'idPP': pageId}) }}" class="btn btn-orange" style="background-color: #F99D45; color:white; border-radius: 30px;"> + Ajouter</a>
                          <!-- Uncomment the line below if you also wish to use an image logo -->
 <img src="{{asset ('assets/img/4.png')}}" alt="" width="70" height="300">
         <h1 class="">CityVibe</h1>

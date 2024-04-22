@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Form;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use App\Entity\Publication;
 use Symfony\Component\Form\AbstractType;
@@ -24,7 +25,11 @@ class PublicationType extends AbstractType
                         // Use JavaScript to display the selected file name in a separate label
                         'onchange' => 'document.getElementById("image-file-name").textContent = this.files[0].name;',
                     ],])
-                ->add('nomp')
+                
+->add('nomp', TextType::class, [
+    'label' => 'Nomp',
+    'required' => true,
+])
         ;
     }
 

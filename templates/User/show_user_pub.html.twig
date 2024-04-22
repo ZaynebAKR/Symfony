@@ -6,7 +6,7 @@
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="{{path ('app_publication_show', {'id_p': publication.id_p}) }}" class="logo d-flex align-items-center me-auto">
+      <a href="{{path ('app_publication_show', {'id_P': publication.id_P}) }}" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="{{asset ('assets/img/4.png')}}" alt="" width="70" height="300">
         <h1 class="">CityVibe</h1>
@@ -38,6 +38,10 @@
             <div class="card-body">
               <table class="table mt-4">
                 <tbody>
+                  <tr>
+                    <th><b>Nom Page :</b></th>
+                    <td>{{ publication.pageRelation.nom }}</td>
+                  </tr>
                   <tr>
                     <th><b>Nom</b></th>
                     <td>{{ publication.nomp }}</td>

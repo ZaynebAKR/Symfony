@@ -11,7 +11,7 @@ use App\Entity\Page;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class PageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -21,7 +21,7 @@ class PageType extends AbstractType
         ->add('nom', TextType::class, [
             'label' => 'Nom',
             'required' => true,
-        ])
+        ]) 
             ->add('contact')
             ->add('categoriep', ChoiceType::class, [
                 'label' => 'Catégorie',
@@ -65,9 +65,8 @@ class PageType extends AbstractType
                 ],
             ])
      
-                    //ajouter boutton     
-            /*->add('Enregistrer',SubmitType::class)*/
-                  ->getForm();
+            
+           
            
         ;
     }

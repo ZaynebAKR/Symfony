@@ -1,6 +1,7 @@
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'novalidate':'novalidate', 'autocomplete': 'off'}}) }}<div class="form-group-left" style="margin-bottom: 10px;">
 <div class="form-group-left" style="margin-bottom: 10px;">
     <div class="flex-container-left">
+        {{ form_errors(form.description) }}
       <label class="icon-label-left"><img src="{{ asset('assets/img/description-de-lemploi.png')}}" style="width: 30px; height: 30px;"></label> Description
         {{ form_widget(form.description, {'attr': {'class-left': ' form-control-left'}}) }}
     </div>
@@ -8,6 +9,7 @@
 
 <div class="form-group-left" style="margin-bottom: 10px;">
     <div class="flex-container-left">
+        {{ form_errors(form.image) }}
               <label class="icon-label-left"><img src="{{ asset('assets/img/ajouter-une-image.png')}}" style="width: 30px; height: 30px;"></label> Image
         {{ form_widget(form.image, {'attr': {'class-left': ' form-control-left'}}) }}
     </div>
@@ -16,8 +18,9 @@
 
 <div class="form-group-left" style="margin-bottom: 10px;">
     <div class="flex-container-left">
+        {{ form_errors(form.nomp) }}
      <label class="icon-label-left"><img src="{{ asset('assets/img/carte-de-visite.png')}}" style="width: 30px; height: 30px;"></label> Nom
-        {{ form_widget(form.nom, {'attr': {'class-left': ' form-control-left'}}) }}
+        {{ form_widget(form.nomp, {'attr': {'class-left': ' form-control-left'}}) }}
     </div>
 </div>
 

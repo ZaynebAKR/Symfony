@@ -6,7 +6,7 @@
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="{{path ('app_publication_show', {'id_p': publication.id_p}) }}" class="logo d-flex align-items-center me-auto">
+      <a href="{{path ('app_publication_show', {'id_P': publication.id_P}) }}" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="{{asset('assets/img/4.png')}}" alt="" width="70" height="300">
         <h1 class="">CityVibe</h1>
@@ -39,6 +39,10 @@
               <table class="table mt-4">
               <tbody>
                 <tr>
+                  <th><b>Nom Page :</b></th>
+                  <td>{{ publication.pageRelation.nom }}</td>
+                </tr>
+                <tr>
                   <th><b>Nom</b></th>
                   <td>{{ publication.nomp }}</td>
                 </tr>
@@ -56,7 +60,7 @@
             </table>
             <div class="text-center">
               <a href="{{ path('app_publication_index') }}" class="btn btn-primary mt-3" style="border-radius: 30px; background-color: #F99D45; color: white; border-color: #F99D45;">Retour aux publications</a>
-              <a href="{{ path('app_publication_edit', {'id_p': publication.id_p}) }}" class="btn btn-primary mt-3" style="border-radius: 30px; background-color: #F99D45; color: white; border-color: #F99D45;">Modifier</a>
+              <a href="{{ path('app_publication_edit', {'id_P': publication.id_P}) }}" class="btn btn-primary mt-3" style="border-radius: 30px; background-color: #F99D45; color: white; border-color: #F99D45;">Modifier</a>
               {{ include('Admin/pub_delete_form.html.twig') }}
             </div>
           </div>

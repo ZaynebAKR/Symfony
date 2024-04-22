@@ -18,6 +18,8 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class UserController extends AbstractController
 {
 
+             /********** Page  **********/
+
     #[Route('/Accueil', name: 'app_index', methods: ['GET'])]
     public function index(PageRepository $pageRepository): Response
     {
@@ -26,13 +28,7 @@ class UserController extends AbstractController
         ]);
     }
 
-   /* #[Route('/page', name: 'app_page_index_user', methods: ['GET'])]
-    public function indexx(PageRepository $pageRepository): Response
-    {
-        return $this->render('User/index_page.html.twig', [
-            'pages' => $pageRepository->findAll(),
-        ]);
-    } */
+
     #[Route('/page', name: 'app_page_index_user', methods: ['GET'])]
     public function indexx(Request $request, PageRepository $pageRepository): Response
     {
@@ -45,7 +41,7 @@ class UserController extends AbstractController
     }
     
     
-    #[Route('/page/{idp}', name: 'app_page_show_user', methods: ['GET'])]
+    #[Route('/page/{idP}', name: 'app_page_show_user', methods: ['GET'])]
     public function show(Page $page): Response
     {
         return $this->render('User/show_user.html.twig', [
@@ -53,13 +49,9 @@ class UserController extends AbstractController
         ]);
     }
 
-  /*  #[Route('/publication', name: 'app_publication_index_user', methods: ['GET'])]
-    public function indexxx(PublicationRepository $publicationRepository): Response
-    {
-        return $this->render('User/index_publication.html.twig', [
-            'publications' => $publicationRepository->findAll(),
-        ]);
-    } */
+                 /********** Publication  **********/
+
+
     #[Route('/publication', name: 'app_publication_index_user', methods: ['GET'])]
     public function indexxx(Request $request, PublicationRepository $publicationRepository): Response
     {
@@ -71,7 +63,7 @@ class UserController extends AbstractController
         ]);
     }
     
-    #[Route('/publication/{id_p}', name: 'app_publication_show_user', methods: ['GET'])]
+    #[Route('/publication/{id_P}', name: 'app_publication_show_user', methods: ['GET'])]
     public function showw(publication $publication): Response
     {
         return $this->render('User/show_user_pub.html.twig', [

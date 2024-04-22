@@ -6,7 +6,7 @@
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="{{ path('app_page_admin_edit', {'idp': page.idp}) }}" class="logo d-flex align-items-center me-auto">
+      <a href="{{ path('app_page_admin_edit', {'idP': page.idP}) }}" class="logo d-flex align-items-center me-auto">
         <img src="{{ asset('assets/img/4.png') }}" alt="" width="70" height="300">
         <h1 class="">CityVibe</h1>
       </a>
@@ -42,7 +42,7 @@
       </div>
       <div class="row justify-content-center mt-3">
         <div class="col-md-6 text-center">
-          <a href="{{path ('app_page_admin_show', {'idp': page.idp}) }}" class="btn" style="background-color: #F99D45; color: white; border-radius: 30px; font-size: 18px;">Retour à la page</a>
+          <a href="{{path ('app_page_admin_show', {'idP': page.idP}) }}" class="btn" style="background-color: #F99D45; color: white; border-radius: 30px; font-size: 18px;">Retour à la page</a>
           {{ include('Admin/page_delete_form.html.twig', {'button_label': 'Supprimer'}) }}
         </div>
       </div>

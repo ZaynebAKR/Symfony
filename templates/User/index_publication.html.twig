@@ -49,12 +49,13 @@
                 <div class="col-md-4 mb-4">
                     <div class="card" style="border-radius: 30px;">
                         <div class="card-body">
+                            <p class="card-text"><b>Nom Page : </b>{{ publication.pageRelation.nom}}</p>
                             <p class="card-text"><b>Nom : </b>{{ publication.nomp }}</p>
                             <p class="card-text" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><b>Description:</b> {{ publication.description }}</p>
                             <img src="{{asset (publication.image) }}" alt="Publication Image" class="card-img-top" width="" height="200" style="border-radius: 27px;"></br>
                             <div class="d-flex justify-content-between align-items-center"></br></br></br>
 
-                                <a href="{{ path('app_publication_show_user', {'id_p': publication.id_p}) }}" class="btn btn-primary" style="background-color: #F99D45; color: white; border-color: #F99D45; border-radius: 30px; height:40px ; width:100px ; margin-right: -10px; margin-left: -60px;">Voir Plus</a>
+                                <a href="{{ path('app_publication_show_user', {'id_P': publication.id_P}) }}" class="btn btn-primary" style="background-color: #F99D45; color: white; border-color: #F99D45; border-radius: 30px; height:40px ; width:100px ; margin-right: -10px; margin-left: -60px;">Voir Plus</a>
                             </div>
                         </div>
                     </div>

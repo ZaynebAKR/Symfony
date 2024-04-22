@@ -1,116 +1,131 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'baseSuperAdmin.html.twig' %}
 
 {% block title %}Page{% endblock %}
 
 {% block body %}
-<header id="header" class="header d-flex align-items-center sticky-top">
-  <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
-<a href="{{ path('app_page_admin_show_id', {'idp': page.idp}) }}" class="logo d-flex align-items-center me-auto">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-<img src="{{asset ('assets/img/4.png')}}" alt="" width="70" height="300">
-
-      <h1 class="">CityVibe</h1>
-    </a>
-<nav id="navmenu" class="navmenu">
-    <ul>
-        <li><a href="{{path ('app_admin') }}">Accueil</a></li>
-        <li class="dropdown has-dropdown">
-            <a href="#" class="active"><span>Lieu</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-                <li><a href="{{path ('app_page_admin_show_id') }}">Pages</a></li>
-                <li><a href="{{path ('app_publication_index') }}">Publications</a></li>
+<body class="">
+<div class="sidebar" data-color="orange" style="width: 200px;">
+      
+      <div class="logo d-flex flex-row align-items-center">
+        <img src="{{asset ('assets_admin/img/logo-removebg-preview.png')}}" alt="" width="70" height="70">
+        <a style="color: white;"> CityVibe </a>
+      </div>
+      <div >
+        <ul class="nav">
+  <div class="logo d-flex flex-row align-items-center">
+        <li>
+            <img src="{{asset ('assets_admin/img/page-daccueil.png')}}" alt="" width="20" height="20">
+            <a href="{{ path ('app_Super_admin') }}"> Accueil</a>
+        </li>
+    </div>
+    <div class="logo d-flex flex-row align-items-center">
+        <li>
+            <img src="{{asset ('assets_admin/img/page-de-texte.png')}}" alt="" width="20" height="20">
+            <a href="#" onclick="toggleSubMenu('lieuSubMenu')"> Lieu <span class="sub-menu-indicator">▼</span></a>
+            <ul id="lieuSubMenu" class="sub-menu" style="display: none;"> <!-- Nested unordered list for sub-items with initial display set to none -->
+                <li><a href="{{ path ('app_Super_admin_page') }}">► Page</a></li>
+                <li><a href="{{ path ('app_Super_admin_publication') }}" class="active">► Publication</a></li>
             </ul>
         </li>
-    </ul>
-    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-</nav>
-<a class="btn-getstarted" href="{{path ('app_admin')}}" style="background-color: green;">Mode Economique</a>
-</div>
-</header>
+    </div>
+</ul>
 
-<main class="main">
-  <div class="jumbotron position-relative">
-    <!-- Big image -->
-    <img src="{{asset (page.image)}}" data-aos="fade-in" class="aos-init aos-animate" alt="Big Image" width="1338" height="350">
+<script>
+    function toggleSubMenu(subMenuId) {
+        var subMenu = document.getElementById(subMenuId);
+        subMenu.style.display = subMenu.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
 
-  <!-- Page content -->
-  <div class="container">
-    <div class="row">
-    <div class="position-absolute top-50 start-0 translate-middle-y"> <!-- Adjusted positioning for the logo -->
+<style>
+    .sub-menu-indicator {
+        margin-left: 5px; /* Adjust margin as needed */
+        font-size: 10px; /* Adjust font size as needed */
+    }
+    .sub-menu li {
+        list-style: none; /* Remove bullet points */
+    }
+</style>
 
-   <!-- Logo -->
-        <img src="{{asset (page.logo) }}" class="img-fluid rounded-circle mb-5" alt="Logo" style=" margin-top: -200px; margin-left: -0.5px; width:200px ; height:200px ; ">
-      </div>
-      <div class="col-md-8">
-        <!-- Other information -->
-        <table class="table">
-          <tbody>
-           <div class="row">
-        <div class="col-md-4 d-flex justify-content-end mb-6" > <!-- Changed alignment to end -->
-          <!-- page.nom -->
-<h1 style=" width: 100%; margin-right: -70px; margin-left: -50px; text-align: center; display: inline-block;">{{ page.nom }}</h1>
-        </div>
-        
-         <div class="container">
-         </br></br>
-      <div class="row">
-        <div class="col-md-6">
-          <!-- First card for Categorie, Description, and Localisation -->
-          <div class="card border-0 shadow-sm rounded-3 mb-4" style="margin-left: 20px; width:500px ;">
-            <div class="card-body" >
-              <h5 class="card-title" >Catégorie & Description & Localisation </h5>
-              <p class="card-text"><strong>Catégorie:</strong> {{ page.categoriep }}</p>
-              <p class="card-text"><strong>Description:</strong> {{ page.description }}</p>
-              <p class="card-text"><strong>Localisation:</strong> {{ page.localisation }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <!-- Second card for Contact and Ouverture -->
-          <div class="card border-0 shadow-sm rounded-3 mb-10" style="margin-left: 170px; width:500px ;">
-            <div class="card-body">
-              <h5 class="card-title">Contact & Heures et date d'ouverture</h5>
-              <p class="card-text"><strong>Contact:</strong> {{ page.contact }}</p>
-<p class="card-text"><strong>Heures et date d'ouverture:</strong> {{ page.ouverture ? page.ouverture|date('Y-m-d H:i:s') : '' }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-            
-          </tbody>
-        </table>
-        <!-- Edit and delete buttons -->
- <div class="text-center">
-                <a href="{{ path ('app_page_admin_edit', {'idp': page.idp}) }}" class="btn btn-primary mt-3" style="border-radius: 30px; background-color: #F99D45; color: white; border-color: #F99D45;">Modifier</a>
-                {{ include('Admin/page_delete_form.html.twig') }}
-              </div>
-      </div>
+
+
     </div>
   </div>
-  
-</main>
+  </br> 
+  </br> 
+  </br> 
+    <div class="main-panel" id="main-panel" style="margin-left: 200px;">
+        <main class="main">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table mt-4">
+                                   
+                                        <tr style="text-align: center;">
+                                            <img src="{{ asset(page.image) }}" class="img-fluid" alt="" style="width: 900px; height: 150px;">
+                                         </tr>
+                                         <tr>
+                                         <tr>
+                                            <td><img src="{{asset ( page.logo) }}" class="img-fluid " alt=""  width="100" height="100" style="margin-left: 180px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>Utilisateur:</b></th>
+                                            <td>{{ page.userRelation.nom  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>Catégorie:</b></th>
+                                            <td>{{ page.categoriep }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>Description:</b></th>
+                                            <td>{{ page.description }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>Localisation:</b></th>
+                                            <td>{{ page.localisation }}</td>
+                                        </tr>
+                                         <tr>
+                                            <th><b>Contact:</b></th>
+                                            <td>{{ page.contact }}</td>
+                                        </tr>
+                                         <tr>
+                                            <th><b>Heures et date d'ouverture:</b></th>
+                                            <td>{{ page.ouverture ? page.ouverture|date('Y-m-d H:i:s') : '' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-center">
+                                    <a href="{{ path('app_Super_admin_page') }}" class="btn btn-primary mt-3" style="border-radius: 30px; background-color: #f96332; color: white; border-color: #f96332;">Retour aux pages</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-<footer id="footer" class="footer position-relative">
+        <footer id="footer" class="footer position-relative">
+            <div class="container copyright text-center mt-4">
+                <p>© <span>Copyright</span> <strong class="px-1">CityVibe</strong> <span>Tous droits réservés</span></p>
+            </div>
+        </footer>
 
-   
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1">CityVibe</strong> <span>All Rights Reserved</span></p>
-     
-    </div></footer>
-     <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  
-  <!-- Preloader -->
-  <div id="preloader"></div>    <!-- Vendor JS Files -->
-    <script src="{{ asset ('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset ('assets/vendor/php-email-form/validate.js')}}"></script>
-    <script src="{{ asset ('assets/vendor/aos/aos.js')}}"></script>
-    <script src="{{ asset ('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-    <script src="{{ asset ('assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
-    <script src="{{ asset ('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+        <!-- Preloader -->
+        <div id="preloader"></div>    <!-- Vendor JS Files -->
+        <script src="{{ asset ('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/php-email-form/validate.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/aos/aos.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+        <script src="{{ asset ('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
 
-    <!-- Main JS File -->
-    <script src="{{ asset ('assets/js/main.js')}}"></script>
+        <!-- Main JS File -->
+        <script src="{{ asset ('assets/js/main.js')}}"></script>
+    </div>
+</body>
 {% endblock %}

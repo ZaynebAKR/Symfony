@@ -6,7 +6,7 @@
 <header id="header" class="header d-flex align-items-center sticky-top">
   <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-    <a href="{{ path ('app_page_admin_show_id', {'idp': page.idp}) }}" class="logo d-flex align-items-center me-auto">
+    <a href="{{ path ('app_page_admin_show_id', {'idP': page.idP}) }}" class="logo d-flex align-items-center me-auto">
       <!-- Uncomment the line below if you also wish to use an image logo -->
 <img src="{{asset ('assets/img/4.png')}}" alt="" width="70" height="300">
 
@@ -82,7 +82,7 @@
         </table>
         <!-- Edit and delete buttons -->
  <div class="text-center">
-                <a href="{{ path ('app_page_admin_edit', {'idp': page.idp}) }}" class="btn btn-primary mt-3" style="border-radius: 30px; background-color: #F99D45; color: white; border-color: #F99D45;">Modifier</a>
+                <a href="{{ path ('app_page_admin_edit', {'idP': page.idP}) }}" class="btn btn-primary mt-3" style="border-radius: 30px; background-color: #F99D45; color: white; border-color: #F99D45;">Modifier</a>
                 {{ include('Admin/page_delete_form.html.twig') }}
               </div>
       </div>

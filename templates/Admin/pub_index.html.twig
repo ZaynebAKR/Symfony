@@ -33,10 +33,10 @@
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-4 mb-4">
-{% for publication in publications %}
-    {% set pageId = publication.pageRelation.idp %}
-    <a href="{{path ('app_publication_new', {'idpp': pageId}) }}" class="btn btn-orange" style="background-color: #F99D45; color:white; border-radius: 30px;"> + Ajouter</a>
-{% endfor %}
+ {% if publications is not empty %}
+                        {% set pageId = publications[0].pageRelation.idp %}
+                        <a href="{{ path('app_publication_new', {'idPP': pageId}) }}" class="btn btn-orange" style="background-color: #F99D45; color:white; border-radius: 30px;"> + Ajouter</a>
+                    {% endif %}
                 </div>
                 <div class="col-md-8 mb-4">
                     <form action="{{ path('app_publication_index') }}" method="GET" class="search-form">
@@ -55,19 +55,19 @@
                     <div class="col-md-4 mb-4">
                         <div class="card" style="border-radius: 30px;">
                             <div class="card-body">
-                              
+                                <p class="card-text"><b>Nom Page : </b>{{ publication.pageRelation.nom}}</p>
                                 <p class="card-text"><b>Nom : </b>{{ publication.nomp }}</p>
                                 <p class="card-text" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><b>Description:</b> {{ publication.description }}</p>
                                 <img src="{{ asset(publication.image) }}" alt="Publication Image" class="card-img-top" width="" height="200" style="border-radius: 27px;"></br>
                                 <div class="d-flex justify-content-between align-items-center"></br></br></br>
-                                    <a href="{{ path('app_publication_edit', {'id_p': publication.id_p}) }}" class="btn btn-secondary" style="background-color: #F99D45; color: white; border-color: #F99D45; margin-right: 50px; margin-left: -10px; border-radius: 30px;">Modifier</a>
+                                    <a href="{{ path('app_publication_edit', {'id_P': publication.id_P}) }}" class="btn btn-secondary" style="background-color: #F99D45; color: white; border-color: #F99D45; margin-right: 50px; margin-left: -10px; border-radius: 30px;">Modifier</a>
                                     {# Delete form #}
-                                    <form action="{{ path('app_publication_delete', {'id_p': publication.id_p}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')" class="d-inline">
+                                    <form action="{{ path('app_publication_delete', {'id_P': publication.id_P}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')" class="d-inline">
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ publication.id_p) }}">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ publication.id_P) }}">
                                         <button type="submit" class="btn btn-secondary" style="background-color: #F99D45; color: white; border-color: #F99D45; margin-right: 90px; margin-left: -40px; border-radius: 30px;">Supprimer</button>
                                     </form>
-                                    <a href="{{ path('app_publication_show', {'id_p': publication.id_p}) }}" class="btn btn-primary" style="background-color: #F99D45; color: white; border-color: #F99D45; border-radius: 30px; height:40px ; width:100px ; margin-right: -10px; margin-left: -60px;">Voir Plus</a>
+                                    <a href="{{ path('app_publication_show', {'id_P': publication.id_P}) }}" class="btn btn-primary" style="background-color: #F99D45; color: white; border-color: #F99D45; border-radius: 30px; height:40px ; width:100px ; margin-right: -10px; margin-left: -60px;">Voir Plus</a>
                                 </div>
                             </div>
                         </div>

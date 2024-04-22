@@ -19,33 +19,28 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 #[Route('/Admin')]
 class AdminController extends AbstractController
 {
+
+    /********** Publication  **********/
     #[Route('/Accueil', name: 'app_admin')]
     public function index(): Response
     {
         return $this->render('Admin/index.html.twig');
     }
 
-  /*  #[Route('/publication', name: 'app_publication_index', methods: ['GET'])]
-    public function indexx(PublicationRepository $publicationRepository): Response
+
+    #[Route('/publication', name: 'app_publication_index', methods: ['GET'])]
+    public function indexx(Request $request, PublicationRepository $publicationRepository): Response
     {
-        return $this->render('Admin/pub_index.html.twig', [
-            'publications' => $publicationRepository->findAll(),
-        ]);
-    }
-*/
-#[Route('/publication', name: 'app_publication_index', methods: ['GET'])]
-public function indexx(Request $request, PublicationRepository $publicationRepository): Response
-{
     $searchTerm = $request->query->get('q');
     $publications = $publicationRepository->searchByNom($searchTerm);
 
     return $this->render('Admin/pub_index.html.twig', [
         'publications' => $publications,
     ]);
-}
+    }
 
-    #[Route('/publication/new/{idpp}', name: 'app_publication_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager , $idpp): Response
+    #[Route('/publication/new/{idPP}', name: 'app_publication_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager , $idPP): Response
 
     {
         $publication = new Publication();
@@ -74,8 +69,8 @@ public function indexx(Request $request, PublicationRepository $publicationRepos
         // Set the image property in the entity to the relative path of the uploaded file
         $publication->setImage('assets/img/'.$newFilename);
     }
-    $idpp = 289; 
-    $page = $entityManager->getReference(Page::class, $idpp); // Debugging statement to check if the page is fetched correctly
+    $idPP = 289; 
+    $page = $entityManager->getReference(Page::class, $idPP); // Debugging statement to check if the page is fetched correctly
     $publication->setPageRelation($page);
             $entityManager->persist($publication);
             $entityManager->flush();
@@ -89,7 +84,7 @@ public function indexx(Request $request, PublicationRepository $publicationRepos
         ]);
     }
 
-    #[Route('/publication/{id_p}', name: 'app_publication_show', methods: ['GET'])]
+    #[Route('/publication/{id_P}', name: 'app_publication_show', methods: ['GET'])]
     public function show(Publication $publication): Response
     {
         return $this->render('Admin/pub_show.html.twig', [
@@ -97,7 +92,7 @@ public function indexx(Request $request, PublicationRepository $publicationRepos
         ]);
     }
 
-    #[Route('/publication/{id_p}/edit', name: 'app_publication_edit', methods: ['GET', 'POST'])]
+    #[Route('/publication/{id_P}/edit', name: 'app_publication_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Publication $publication, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PublicationType::class, $publication);
@@ -136,28 +131,20 @@ public function indexx(Request $request, PublicationRepository $publicationRepos
         ]);
     }
 
-    #[Route('/publication/{id_p}', name: 'app_publication_delete', methods: ['POST'])]
+    #[Route('/publication/{id_P}', name: 'app_publication_delete', methods: ['POST'])]
     public function delete(Request $request, Publication $publication, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$publication->getId_p(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$publication->getId_P(), $request->request->get('_token'))) {
             $entityManager->remove($publication);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_publication_index', [], Response::HTTP_SEE_OTHER);
     }
-/*
-    #[Route('/page', name: 'app_page_index', methods: ['GET'])]
-    public function indexxx(EntityManagerInterface $entityManager): Response
-    {
-        $pages = $entityManager
-            ->getRepository(Page::class)
-            ->findAll();
 
-        return $this->render('Admin/page_index.html.twig', [
-            'pages' => $pages,
-        ]);
-    } */
+    /********** Page  **********/
+
+
     #[Route('/page', name: 'app_page_index', methods: ['GET'])]
     public function indexxx(Request $request, PageRepository $pageRepository): Response
 {
@@ -168,8 +155,8 @@ public function indexx(Request $request, PublicationRepository $publicationRepos
         'pages' => $pages,
     ]);
 }
-    #[Route('/page/new/{idu}', name: 'app_page_admin_new', methods: ['GET', 'POST'])]
-public function newpage(Request $request, EntityManagerInterface $entityManager , $idu): Response
+    #[Route('/page/new/{idU}', name: 'app_page_admin_new', methods: ['GET', 'POST'])]
+public function newpage(Request $request, EntityManagerInterface $entityManager , $idU): Response
 {
 $page = new Page();
 $form = $this->createForm(PageType::class, $page);
@@ -197,21 +184,7 @@ if ($form->isSubmitted() && $form->isValid()) {
         // Set the image property in the entity to the relative path of the uploaded file
         $page->setImage('assets/img/'.$newFilename);
     }
-   /* $imageFile = $form->get('image')->getData();
-if ($imageFile) {
-    $newFilename = uniqid().'.'.$imageFile->guessExtension();
-    try {
-        $imageFile->move(
-            $this->getParameter('images_directory'),
-            $newFilename
-        );
-        $page->setImage($newFilename); // Set image property to the filename
-    } catch (FileException $e) {
-        // Handle file upload exception
-        $this->addFlash('error', 'An error occurred while uploading the image.');
-        return $this->redirectToRoute('app_page_admin_new');
-    }
-}*/
+
             $logo = $form->get('logo')->getData();
             if ($logo) {
                 // Generate a unique filename
@@ -248,7 +221,7 @@ return $this->renderForm('Admin/page_new.html.twig', [
     'form' => $form,
 ]);
 }
-    #[Route('/page/{idp}', name: 'app_page_admin_show', methods: ['GET'])]
+    #[Route('/page/{idP}', name: 'app_page_admin_show', methods: ['GET'])]
     public function show_admin_page(Page $page): Response
     {
         return $this->render('Admin/page_show.html.twig', [
@@ -256,17 +229,17 @@ return $this->renderForm('Admin/page_new.html.twig', [
         ]);
     }
     
-    #[Route('/{idp}', name: 'app_page_admin_show_id', methods: ['GET'])]
-    public function show_page(EntityManagerInterface $entityManager, $idp = 332): Response
+    #[Route('/{idP}', name: 'app_page_admin_show_id', methods: ['GET'])]
+    public function show_page(EntityManagerInterface $entityManager, $idP = 289): Response
     {
         // Fetch the Page entity by ID
         $page = $entityManager
             ->getRepository(Page::class)
-            ->find($idp);
+            ->find($idP);
 
         // Check if the page exists
         if (!$page) {
-            throw $this->createNotFoundException('Page not found with id ' . $idp);
+            throw $this->createNotFoundException('Page non trouver avec cet id ' . $idP);
         }
 
         // Render the template with the fetched page
@@ -274,26 +247,9 @@ return $this->renderForm('Admin/page_new.html.twig', [
             'page' => $page,
         ]);
     }
-/*    #[Route('/page/new', name: 'app_page_admin_new', methods: ['GET', 'POST'])]
-    public function newpage(Request $request, EntityManagerInterface $entityManager): Response
-    {
-    $page = new Page();
-    $form = $this->createForm(PageType::class, $page);
-    $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        // Handle form submission and entity persistence
-        // Redirect to the appropriate route after successful submission
-    }
-
-    return $this->render('Admin/page_new.html.twig', [
-        'form' => $form->createView(),
-    ]);
-}*/
-
-
-    #[Route('/page/{idp}/edit', name: 'app_page_admin_edit', methods: ['GET', 'POST'])]
-    public function edit_page_admin(Request $request, Page $page, EntityManagerInterface $entityManager): Response
+    #[Route('/page/edit/{idP}', name: 'app_page_admin_edit', methods: ['GET', 'POST'])]
+    public function edit_page_admin(Request $request, Page $page, EntityManagerInterface $entityManager ): Response
     {
         $form = $this->createForm(PageType::class, $page);
         $form->handleRequest($request);
@@ -353,10 +309,10 @@ return $this->renderForm('Admin/page_new.html.twig', [
 
         ]);
     }
-    #[Route('/page/{idp}/delete', name: 'app_page_admin_delete', methods: ['POST'])]
+    #[Route('/page/delete/{idP}', name: 'app_page_admin_delete', methods: ['POST'])]
     public function delete_admin(Request $request, Page $page, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$page->getIdp(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$page->getIdP(), $request->request->get('_token'))) {
             $entityManager->remove($page);
             $entityManager->flush();
         }
